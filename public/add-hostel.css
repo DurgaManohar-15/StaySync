@@ -1,0 +1,81 @@
+/* General Page Styling */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Form Container */
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  text-align: center;
+}
+
+/* Form Heading */
+.form-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+}
+
+/* Input Fields */
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+/* Input Focus Effect */
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .form-container {
+    width: 90%;
+    padding: 20px;
+  }
+}

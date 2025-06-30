@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostel Details | STAY SYNC</title>
+    <link rel="stylesheet" href="booking.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Hostel Details</h1>
+      <nav>
+        <a href="student-dashboard.html">Back to Dashboard</a>
+        <a href="login.html">Logout</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hostel-details-section">
+        <h2>Hostel Information</h2>
+        <div id="hostel-details"></div>
+      </section>
+
+      <section id="contact-us-section">
+        <h2>Contact Owner</h2>
+        <div id="contact-info">
+          <p><strong>Owner Name:</strong> Mr. Ramesh Kumar</p>
+          <p><strong>Phone:</strong> +91 98765 43210</p>
+          <p><strong>Email:</strong> contact@hostelbooking.com</p>
+        </div>
+        <button id="contact-btn">Express Interest</button>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let hostelName = sessionStorage.getItem("selectedHostel");
+
+        if (!hostelName) {
+          alert("Unauthorized Access!");
+          window.location.href = "student-dashboard.html";
+          return;
+        }
+
+        // Display selected hostel details
+        document.getElementById("hostel-details").innerHTML = `
+          <p><strong>Hostel Name:</strong> ${hostelName}</p>
+          <p><strong>Location:</strong> Maisammaguda, Hyderabad</p>
+          <p><strong>Facilities:</strong> WiFi, Mess, Laundry, 24/7 Security</p>
+          <p><strong>Rent:</strong> ₹8,000 per month</p>
+          <p><strong>Available Rooms:</strong> 5 (Single Occupancy)</p>
+          <p><strong>Food Options:</strong> Vegetarian & Non-Vegetarian</p>
+        `;
+
+        // Contact Owner Button - Directly opens Gmail compose window
+        document
+          .getElementById("contact-btn")
+          .addEventListener("click", function () {
+            const subject = `Interest in ${hostelName}`;
+            const body = `Dear Mr. Ramesh Kumar,\n\nI am interested in joining your hostel (${hostelName}). Please provide me with more details about availability and admission process.\n\nRegards,\n[Your Name]`;
+
+            // Direct Gmail compose URL
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@hostelbooking.com&su=${encodeURIComponent(
+              subject
+            )}&body=${encodeURIComponent(body)}`;
+
+            // Open in new tab
+            window.open(gmailUrl, "_blank");
+          });
+      });
+    </script>
+  </body>
+</html>

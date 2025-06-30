@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard | STAY SYNC</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="student-dashboard.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Student Dashboard</h1>
+      <nav>
+        <a href="login.html" class="nav-btn logout-btn">Logout</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <section class="search-section">
+        <h2>Find Hostels Near Your College</h2>
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-box"
+            placeholder="Enter college name (e.g. mallareddyuniversity)"
+          />
+          <button id="search-btn">Search</button>
+        </div>
+        <div id="search-results"></div>
+      </section>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Hostel data
+        const hostelsData = {
+          mallareddyuniversity: [
+            "Malla Reddy University Boys Hostel",
+            "Malla Reddy University Girls Hostel",
+            "Divya Sai Executive Hostel",
+            "GB Raju Boys Hostel",
+          ],
+          mallareddyengineeringcollege: [
+            "Malla Reddy Engineering College Boys Hostel",
+            "Malla Reddy Engineering College Girls Hostel",
+            "Sai Ram Boys Hostel",
+          ],
+          stpetersengineeringcollege: [
+            "St. Peter's Engineering College Hostel",
+            "Karthikeya Boys Hostel",
+            "PG for Boys in Maisammaguda",
+          ],
+          mallareddycollegeofengineeringfosrwomen: [
+            "Malla Reddy College of Engineering for Women Hostel",
+            "Shagun PG for Girls",
+            "Sri Sai Tulasi Girls Hostel",
+          ],
+          nallamallareddyengineeringcollege: [
+            "Nalla Malla Reddy Engineering College Hostel",
+            "Raghavendra Boys Comfort Home",
+            "Venkata Sai Laxmi Boys Hostel",
+          ],
+        };
+
+        // Search function
+        function searchHostels() {
+          const collegeName = document
+            .getElementById("search-box")
+            .value.trim()
+            .toLowerCase();
+          const resultsDiv = document.getElementById("search-results");
+          resultsDiv.innerHTML = "";
+
+          if (!collegeName) {
+            resultsDiv.innerHTML = `
+                        <div class="no-results">
+                            <p>Please enter a college name to search</p>
+                            <div class="example-searches">
+                                <p>Try these examples:</p>
+                                <span>mallareddyuniversity</span>
+                                <span>mallareddyengineeringcollege</span>
+                                <span>stpetersengineeringcollege</span>
+                            </div>
+                        </div>
+                    `;
+            return;
+          }
+
+          const hostels = hostelsData[collegeName];
+
+          if (hostels && hostels.length > 0) {
+            const resultsContainer = document.createElement("div");
+            resultsContainer.className = "results-container";
+
+            hostels.forEach((hostel) => {
+              const hostelDiv = document.createElement("div");
+              hostelDiv.className = "hostel-item";
+              hostelDiv.innerHTML = `
+                            <div class="hostel-info">
+                                <p>${hostel}</p>
+                            </div>
+                            <button class="view-btn" data-hostel="${hostel}">View Details</button>
+                        `;
+              resultsContainer.appendChild(hostelDiv);
+            });
+
+            resultsDiv.appendChild(resultsContainer);
+
+            // Add click event to view buttons
+            document.querySelectorAll(".view-btn").forEach((btn) => {
+              btn.addEventListener("click", function () {
+                const hostelName = this.getAttribute("data-hostel");
+                // Store the selected hostel in sessionStorage
+                sessionStorage.setItem("selectedHostel", hostelName);
+                // Redirect to booking page
+                window.location.href = "booking.html";
+              });
+            });
+          } else {
+            resultsDiv.innerHTML = `
+                        <div class="no-results">
+                            <p>No hostels found for "${collegeName}"</p>
+                            <div class="example-searches">
+                                <p>Try these examples:</p>
+                                <span>mallareddyuniversity</span>
+                                <span>mallareddyengineeringcollege</span>
+                                <span>stpetersengineeringcollege</span>
+                            </div>
+                        </div>
+                    `;
+          }
+        }
+
+        // Setup search button
+        document
+          .getElementById("search-btn")
+          .addEventListener("click", searchHostels);
+
+        // Also search when Enter key is pressed
+        document
+          .getElementById("search-box")
+          .addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              searchHostels();
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

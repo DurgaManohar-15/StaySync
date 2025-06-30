@@ -1,0 +1,141 @@
+/* General styles */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f7f6;
+  color: #333;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.nav-btn {
+  text-decoration: none;
+  color: white;
+  background: #ff4b5c;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: #e63e50;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-section h2 {
+  text-align: center;
+  color: #0056b3;
+  margin-bottom: 15px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#search-box {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#search-btn {
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#search-btn:hover {
+  background: #0056b3;
+}
+
+/* Results Section */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.hostel-item {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid #007bff;
+  transition: 0.3s;
+}
+
+.hostel-item:hover {
+  background: #eef5ff;
+}
+
+.view-btn {
+  background: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-btn:hover {
+  background: #218838;
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+.example-searches span {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.example-searches span:hover {
+  background: #0056b3;
+}
