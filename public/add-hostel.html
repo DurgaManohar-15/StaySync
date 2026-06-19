@@ -1,84 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Hostel</title>
-    <link rel="stylesheet" href="add-hostel.css" />
-  </head>
-  <body>
-    <div class="form-container">
-      <h2>Add New Hostel</h2>
-      <form id="hostel-form">
-        <label>Hostel Name:</label>
-        <input type="text" id="hostel-name" required />
 
-        <label>Location:</label>
-        <input type="text" id="location" required />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Hostel</title>
+  <link rel="stylesheet" href="add-hostel.css" />
+</head>
 
-        <label>Rent (₹):</label>
-        <input type="number" id="rent" required />
+<body>
+  <div class="form-container">
+    <h2>Add New Hostel</h2>
+    <form id="hostel-form">
+      <label>Hostel Name:</label>
+      <input type="text" id="hostel-name" required />
 
-        <label>Food Available:</label>
-        <select id="food">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
+      <label>Location:</label>
+      <input type="text" id="location" required />
 
-        <label>Distance (km):</label>
-        <input type="number" id="distance" required />
+      <label>Rent (₹):</label>
+      <input type="number" id="rent" required />
 
-        <h3>Owner Details</h3>
-        <label>Owner Name:</label>
-        <input type="text" id="owner-name" required />
+      <label>Food Available:</label>
+      <select id="food">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
 
-        <label>Owner Email:</label>
-        <input type="email" id="owner-email" required />
+      <label>Distance (km):</label>
+      <input type="number" id="distance" required />
 
-        <label>Owner Mobile:</label>
-        <input type="tel" id="owner-mobile" pattern="[0-9]{10}" required />
+      <h3>Owner Details</h3>
+      <label>Owner Name:</label>
+      <input type="text" id="owner-name" required />
 
-        <button type="submit">Add Hostel</button>
-      </form>
-    </div>
+      <label>Owner Email:</label>
+      <input type="email" id="owner-email" required />
 
-    <script>
-      document
-        .getElementById("hostel-form")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
+      <label>Owner Mobile:</label>
+      <input type="tel" id="owner-mobile" pattern="[0-9]{10}" required />
 
-          let hostel = {
-            name: document.getElementById("hostel-name").value,
-            location: document.getElementById("location").value,
-            rent: document.getElementById("rent").value,
-            food: document.getElementById("food").value,
-            distance: document.getElementById("distance").value,
-            ownerName: document.getElementById("owner-name").value,
-            ownerEmail: document.getElementById("owner-email").value,
-            ownerMobile: document.getElementById("owner-mobile").value,
-          };
+      <button type="submit">Add Hostel</button>
+    </form>
+  </div>
 
-          try {
-            let response = await fetch("http://localhost:3000/add-hostel", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(hostel),
-            });
+  <script>
+    document
+      .getElementById("hostel-form")
+      .addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-            let result = await response.json();
+        let hostel = {
+          name: document.getElementById("hostel-name").value,
+          location: document.getElementById("location").value,
+          rent: document.getElementById("rent").value,
+          food: document.getElementById("food").value,
+          distance: document.getElementById("distance").value,
+          ownerName: document.getElementById("owner-name").value,
+          ownerEmail: document.getElementById("owner-email").value,
+          ownerMobile: document.getElementById("owner-mobile").value,
+        };
 
-            if (response.ok) {
-              alert(result.message);
-              window.location.href = "admin-dashboard.html";
-            } else {
-              alert("❌ Error adding hostel");
-            }
-          } catch (error) {
-            console.error("❌ Error:", error);
-            alert("❌ Failed to connect to server");
+        try {
+          let response = await fetch("http://localhost:3000/add-hostel", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(hostel),
+          });
+
+          let result = await response.json();
+
+          if (response.ok) {
+            alert(result.message);
+            window.location.href = "admin-dashboard.html";
+          } else {
+            alert("❌ Error adding hostel");
           }
-        });
-    </script>
-  </body>
+        } catch (error) {
+          console.error("❌ Error:", error);
+          alert("❌ Failed to connect to server");
+        }
+      });
+  </script>
+</body>
+
 </html>
